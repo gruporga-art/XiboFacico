@@ -6,146 +6,209 @@
     <title>Clima · Veracruz · Boca del Río · Medellín · Xalapa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* ============================================
+           RESET Y CONFIGURACIÓN BASE
+           ============================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
         }
-        body {
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             background: linear-gradient(145deg, #0b2a3e 0%, #1b4f6e 100%);
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 1.5rem;
         }
+
+        /* ============================================
+           CONTENEDOR PRINCIPAL - OCUPA TODO EL ESPACIO
+           ============================================ */
         .widget {
-            max-width: 580px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.08);
+            width: 100vw;
+            height: 100vh;
+            max-width: 1080px;
+            max-height: 720px;
+            background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(14px);
-            border-radius: 2.5rem;
-            padding: 1.8rem 1.5rem 2rem;
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 2rem;
+            padding: 2.5vh 3vw;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
             color: #f0f9ff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
+
+        /* ============================================
+           ENCABEZADO
+           ============================================ */
+        .header {
+            flex: 0 0 auto;
+        }
+
         .titulo {
-            font-size: 1.3rem;
+            font-size: clamp(1.2rem, 3.5vh, 2.2rem);
             font-weight: 600;
-            margin-bottom: 0.3rem;
             letter-spacing: 0.5px;
         }
         .titulo i {
             color: #ffd966;
             margin-right: 0.5rem;
         }
+
         .fecha {
-            font-size: 0.7rem;
+            font-size: clamp(0.6rem, 1.6vh, 1rem);
             font-weight: 300;
             opacity: 0.7;
-            margin-bottom: 1rem;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 0.4rem;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.4vh;
             display: inline-block;
+            margin-top: 0.2vh;
         }
+
+        /* ============================================
+           GRID DE CIUDADES - RESPONSIVE
+           ============================================ */
         .grid-ciudades {
+            flex: 1 1 auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0.6rem;
-            margin: 0.6rem 0;
+            gap: 1.2vw;
+            margin: 1.5vh 0;
+            align-content: center;
+            min-height: 0;
         }
+
+        /* ============================================
+           TARJETA DE CADA CIUDAD
+           ============================================ */
         .ciudad-card {
             background: rgba(0, 0, 0, 0.25);
-            border-radius: 1.2rem;
-            padding: 0.6rem 0.2rem;
+            border-radius: 1.8rem;
+            padding: 1.2vh 0.5vw;
             border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             transition: all 0.3s;
         }
+
         .ciudad-card .nombre {
-            font-size: 0.7rem;
+            font-size: clamp(0.65rem, 1.8vh, 1.1rem);
             font-weight: 600;
-            margin-bottom: 0.1rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            width: 100%;
+            padding: 0 0.2vw;
         }
         .ciudad-card .nombre i {
             color: #ffd966;
-            font-size: 0.4rem;
-            margin-right: 0.2rem;
+            font-size: 0.6em;
+            margin-right: 0.3vw;
         }
+
         .ciudad-card .icono {
-            font-size: 2.2rem;
+            font-size: clamp(2.5rem, 8vh, 5rem);
             line-height: 1;
-            margin: 0.1rem 0;
             color: #fff9e6;
-            display: inline-block;
         }
         .ciudad-card .icono i {
             animation: flotar 3s ease-in-out infinite;
             display: inline-block;
         }
+
         .ciudad-card .temp {
-            font-size: 1.6rem;
+            font-size: clamp(1.8rem, 5.5vh, 3.5rem);
             font-weight: 700;
             letter-spacing: 0.5px;
+            line-height: 1.1;
         }
         .ciudad-card .temp sup {
-            font-size: 0.9rem;
+            font-size: 0.55em;
             font-weight: 400;
             margin-left: 1px;
         }
+
         .ciudad-card .desc {
-            font-size: 0.5rem;
+            font-size: clamp(0.5rem, 1.4vh, 0.85rem);
             opacity: 0.8;
             text-transform: capitalize;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            padding: 0 0.2rem;
+            width: 100%;
+            padding: 0 0.2vw;
         }
+
         .ciudad-card .extra {
-            font-size: 0.45rem;
+            font-size: clamp(0.45rem, 1.2vh, 0.75rem);
             opacity: 0.6;
             display: flex;
             justify-content: center;
-            gap: 0.4rem;
-            margin-top: 0.2rem;
+            gap: 0.8vw;
+            margin-top: 0.2vh;
             flex-wrap: wrap;
         }
         .ciudad-card .extra i {
-            margin-right: 0.1rem;
+            margin-right: 0.2vw;
         }
-        .estado {
-            display: inline-block;
-            padding: 0.15rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.55rem;
-            margin-top: 0.5rem;
-            letter-spacing: 0.5px;
-            background: rgba(100, 200, 255, 0.15);
-            border: 1px solid rgba(100, 200, 255, 0.2);
-        }
+
+        /* ============================================
+           PIE DE PÁGINA
+           ============================================ */
         .footer {
-            margin-top: 1rem;
-            font-size: 0.55rem;
-            opacity: 0.4;
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 0.7rem;
+            padding-top: 0.8vh;
+            margin-top: 0.2vh;
+        }
+
+        .estado {
+            font-size: clamp(0.5rem, 1.3vh, 0.8rem);
+            padding: 0.2vh 1.2vw;
+            border-radius: 20px;
+            background: rgba(100, 200, 255, 0.12);
+            border: 1px solid rgba(100, 200, 255, 0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-credit {
+            font-size: clamp(0.45rem, 1.2vh, 0.7rem);
+            opacity: 0.4;
+            letter-spacing: 0.5px;
+        }
+        .footer-credit i {
+            margin: 0 0.3vw;
+            color: #ffb3b3;
+        }
+
+        /* ============================================
+           ANIMACIONES
+           ============================================ */
+        @keyframes flotar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
         }
         @keyframes pulse {
             0% { opacity: 0.8; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.08); }
             100% { opacity: 0.8; transform: scale(1); }
-        }
-        @keyframes flotar {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-4px); }
-            100% { transform: translateY(0px); }
         }
         @keyframes girar {
             0% { transform: rotate(0deg); }
@@ -153,10 +216,11 @@
         }
         @keyframes gota {
             0% { transform: rotate(0deg) translateY(0); }
-            25% { transform: rotate(4deg) translateY(-2px); }
-            75% { transform: rotate(-4deg) translateY(2px); }
+            25% { transform: rotate(5deg) translateY(-3px); }
+            75% { transform: rotate(-5deg) translateY(3px); }
             100% { transform: rotate(0deg) translateY(0); }
         }
+
         .fa-sun {
             animation: girar 16s linear infinite;
             color: #ffe484;
@@ -171,26 +235,83 @@
             animation: pulse 2.4s ease-in-out infinite;
             color: #ffd966;
         }
-        @media(max-width:550px) {
-            .widget { padding: 1rem; }
-            .grid-ciudades { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
-            .ciudad-card { padding: 0.5rem 0.2rem; }
-            .ciudad-card .nombre { font-size: 0.65rem; }
-            .ciudad-card .icono { font-size: 1.8rem; }
-            .ciudad-card .temp { font-size: 1.3rem; }
-            .ciudad-card .desc { font-size: 0.45rem; }
-            .ciudad-card .extra { font-size: 0.4rem; gap: 0.2rem; }
+
+        /* ============================================
+           RESPONSIVE: PANTALLAS PEQUEÑAS
+           ============================================ */
+        @media (max-width: 700px) {
+            .widget {
+                border-radius: 1.2rem;
+                padding: 1.5vh 2vw;
+            }
+            .grid-ciudades {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5vw;
+            }
+            .ciudad-card {
+                border-radius: 1.2rem;
+                padding: 1vh 0.5vw;
+            }
         }
-        @media(max-width:380px) {
-            .grid-ciudades { grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+
+        @media (max-width: 420px) {
+            .widget {
+                border-radius: 0.8rem;
+                padding: 1vh 1.5vw;
+            }
+            .grid-ciudades {
+                grid-template-columns: 1fr 1fr;
+                gap: 1vw;
+            }
+            .ciudad-card {
+                border-radius: 0.8rem;
+                padding: 0.6vh 0.3vw;
+            }
+            .ciudad-card .nombre {
+                font-size: 0.55rem;
+            }
+            .ciudad-card .icono {
+                font-size: 1.8rem;
+            }
+            .ciudad-card .temp {
+                font-size: 1.2rem;
+            }
+            .ciudad-card .desc {
+                font-size: 0.4rem;
+            }
+            .ciudad-card .extra {
+                font-size: 0.35rem;
+                gap: 0.3vw;
+            }
+        }
+
+        /* ============================================
+           AJUSTE PARA PANTALLAS MUY GRANDES
+           ============================================ */
+        @media (min-width: 1200px) {
+            .widget {
+                padding: 3vh 3vw;
+            }
+            .grid-ciudades {
+                gap: 1.5vw;
+            }
         }
     </style>
 </head>
 <body>
 <div class="widget">
-    <div class="titulo"><i class="fas fa-map-pin"></i> Clima · Veracruz · Boca del Río · Medellín · Xalapa</div>
-    <div class="fecha" id="fecha"><i class="far fa-calendar-alt" style="margin-right:4px;"></i> <span id="fechaTexto">Cargando...</span></div>
-    
+    <!-- ===== ENCABEZADO ===== -->
+    <div class="header">
+        <div class="titulo">
+            <i class="fas fa-map-pin"></i> Clima · Veracruz · Boca del Río · Medellín · Xalapa
+        </div>
+        <div class="fecha" id="fecha">
+            <i class="far fa-calendar-alt" style="margin-right:4px;"></i>
+            <span id="fechaTexto">Cargando...</span>
+        </div>
+    </div>
+
+    <!-- ===== GRID DE CIUDADES ===== -->
     <div class="grid-ciudades" id="gridClima">
         <!-- Veracruz -->
         <div class="ciudad-card" id="cardVeracruz">
@@ -198,109 +319,147 @@
             <div class="icono" id="iconVeracruz"><i class="fas fa-cloud-sun"></i></div>
             <div class="temp" id="tempVeracruz">--<sup>°C</sup></div>
             <div class="desc" id="descVeracruz">Cargando...</div>
-            <div class="extra"><span id="humVeracruz"><i class="fas fa-tint"></i> --%</span><span id="vientoVeracruz"><i class="fas fa-wind"></i> --</span></div>
+            <div class="extra">
+                <span id="humVeracruz"><i class="fas fa-tint"></i> --%</span>
+                <span id="vientoVeracruz"><i class="fas fa-wind"></i> --</span>
+            </div>
         </div>
-        <!-- Boca del Río (con coordenadas exactas) -->
+
+        <!-- Boca del Río (coordenadas exactas) -->
         <div class="ciudad-card" id="cardBoca">
             <div class="nombre"><i class="fas fa-map-marker-alt"></i>Boca del Río</div>
             <div class="icono" id="iconBoca"><i class="fas fa-cloud-sun"></i></div>
             <div class="temp" id="tempBoca">--<sup>°C</sup></div>
             <div class="desc" id="descBoca">Cargando...</div>
-            <div class="extra"><span id="humBoca"><i class="fas fa-tint"></i> --%</span><span id="vientoBoca"><i class="fas fa-wind"></i> --</span></div>
+            <div class="extra">
+                <span id="humBoca"><i class="fas fa-tint"></i> --%</span>
+                <span id="vientoBoca"><i class="fas fa-wind"></i> --</span>
+            </div>
         </div>
+
         <!-- Medellín de Bravo -->
         <div class="ciudad-card" id="cardMedellin">
             <div class="nombre"><i class="fas fa-map-marker-alt"></i>Medellín de Bravo</div>
             <div class="icono" id="iconMedellin"><i class="fas fa-cloud-sun"></i></div>
             <div class="temp" id="tempMedellin">--<sup>°C</sup></div>
             <div class="desc" id="descMedellin">Cargando...</div>
-            <div class="extra"><span id="humMedellin"><i class="fas fa-tint"></i> --%</span><span id="vientoMedellin"><i class="fas fa-wind"></i> --</span></div>
+            <div class="extra">
+                <span id="humMedellin"><i class="fas fa-tint"></i> --%</span>
+                <span id="vientoMedellin"><i class="fas fa-wind"></i> --</span>
+            </div>
         </div>
+
         <!-- Xalapa -->
         <div class="ciudad-card" id="cardXalapa">
             <div class="nombre"><i class="fas fa-map-marker-alt"></i>Xalapa</div>
             <div class="icono" id="iconXalapa"><i class="fas fa-cloud-sun"></i></div>
             <div class="temp" id="tempXalapa">--<sup>°C</sup></div>
             <div class="desc" id="descXalapa">Cargando...</div>
-            <div class="extra"><span id="humXalapa"><i class="fas fa-tint"></i> --%</span><span id="vientoXalapa"><i class="fas fa-wind"></i> --</span></div>
+            <div class="extra">
+                <span id="humXalapa"><i class="fas fa-tint"></i> --%</span>
+                <span id="vientoXalapa"><i class="fas fa-wind"></i> --</span>
+            </div>
         </div>
     </div>
 
-    <div class="estado" id="estado">🌐 Cargando datos...</div>
-    <div class="footer"><i class="fas fa-cloud-sun-rain"></i> Datos en tiempo real · OpenWeather</div>
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <div class="footer">
+        <div class="estado" id="estado">🌐 Cargando datos...</div>
+        <div class="footer-credit">
+            <i class="fas fa-cloud-sun-rain"></i> Datos en tiempo real · OpenWeather
+        </div>
+    </div>
 </div>
+
 <script>
     (function() {
         var API_KEY = '7914fbf24ae32bef2b949b6c2e9e62f0';
-        
-        // Configuración de ciudades: algunas por nombre, otras por coordenadas para mayor precisión
-        var ciudades = [
-            { 
-                id: 'Veracruz', 
-                pais: 'MX', 
-                nombre: 'Veracruz', 
-                card: 'cardVeracruz', 
-                temp: 'tempVeracruz', 
-                icon: 'iconVeracruz', 
-                desc: 'descVeracruz', 
-                hum: 'humVeracruz', 
-                viento: 'vientoVeracruz',
-                tipo: 'nombre'
-            },
-            { 
-                // Boca del Río por coordenadas (más preciso)
-                lat: 19.1, 
-                lon: -96.1, 
-                nombre: 'Boca del Río', 
-                card: 'cardBoca', 
-                temp: 'tempBoca', 
-                icon: 'iconBoca', 
-                desc: 'descBoca', 
-                hum: 'humBoca', 
-                viento: 'vientoBoca',
-                tipo: 'coordenadas'
-            },
-            { 
-                id: 'Medellín de Bravo', 
-                pais: 'MX', 
-                nombre: 'Medellín de Bravo', 
-                card: 'cardMedellin', 
-                temp: 'tempMedellin', 
-                icon: 'iconMedellin', 
-                desc: 'descMedellin', 
-                hum: 'humMedellin', 
-                viento: 'vientoMedellin',
-                tipo: 'nombre'
-            },
-            { 
-                id: 'Xalapa', 
-                pais: 'MX', 
-                nombre: 'Xalapa', 
-                card: 'cardXalapa', 
-                temp: 'tempXalapa', 
-                icon: 'iconXalapa', 
-                desc: 'descXalapa', 
-                hum: 'humXalapa', 
-                viento: 'vientoXalapa',
-                tipo: 'nombre'
-            }
-        ];
 
+        // Configuración de ciudades
+        var ciudades = [{
+            id: 'Veracruz',
+            pais: 'MX',
+            nombre: 'Veracruz',
+            card: 'cardVeracruz',
+            temp: 'tempVeracruz',
+            icon: 'iconVeracruz',
+            desc: 'descVeracruz',
+            hum: 'humVeracruz',
+            viento: 'vientoVeracruz',
+            tipo: 'nombre'
+        }, {
+            lat: 19.1,
+            lon: -96.1,
+            nombre: 'Boca del Río',
+            card: 'cardBoca',
+            temp: 'tempBoca',
+            icon: 'iconBoca',
+            desc: 'descBoca',
+            hum: 'humBoca',
+            viento: 'vientoBoca',
+            tipo: 'coordenadas'
+        }, {
+            id: 'Medellín de Bravo',
+            pais: 'MX',
+            nombre: 'Medellín de Bravo',
+            card: 'cardMedellin',
+            temp: 'tempMedellin',
+            icon: 'iconMedellin',
+            desc: 'descMedellin',
+            hum: 'humMedellin',
+            viento: 'vientoMedellin',
+            tipo: 'nombre'
+        }, {
+            id: 'Xalapa',
+            pais: 'MX',
+            nombre: 'Xalapa',
+            card: 'cardXalapa',
+            temp: 'tempXalapa',
+            icon: 'iconXalapa',
+            desc: 'descXalapa',
+            hum: 'humXalapa',
+            viento: 'vientoXalapa',
+            tipo: 'nombre'
+        }];
+
+        // Actualizar fecha/hora
         function actualizarFecha() {
             try {
                 var a = new Date();
                 var m = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
                 var d = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
-                var fechaStr = d[a.getDay()] + ' ' + a.getDate() + ' de ' + m[a.getMonth()] + ' de ' + a.getFullYear() + ', ' + String(a.getHours()).padStart(2, '0') + ':' + String(a.getMinutes()).padStart(2, '0') + ' h.';
+                var fechaStr = d[a.getDay()] + ' ' + a.getDate() + ' de ' + m[a.getMonth()] + ' de ' + a.getFullYear() +
+                    ', ' + String(a.getHours()).padStart(2, '0') + ':' + String(a.getMinutes()).padStart(2, '0') + ' h.';
                 document.getElementById('fechaTexto').textContent = fechaStr;
             } catch (e) {}
         }
 
+        // Mapeo de iconos OpenWeather → FontAwesome
         function getIconoFA(c) {
-            var m = { '01d': 'fa-sun', '01n': 'fa-moon', '02d': 'fa-cloud-sun', '02n': 'fa-cloud-moon', '03d': 'fa-cloud', '03n': 'fa-cloud', '04d': 'fa-cloud', '04n': 'fa-cloud', '09d': 'fa-cloud-rain', '09n': 'fa-cloud-rain', '10d': 'fa-cloud-sun-rain', '10n': 'fa-cloud-moon-rain', '11d': 'fa-bolt', '11n': 'fa-bolt', '13d': 'fa-snowflake', '13n': 'fa-snowflake', '50d': 'fa-smog', '50n': 'fa-smog' };
+            var m = {
+                '01d': 'fa-sun',
+                '01n': 'fa-moon',
+                '02d': 'fa-cloud-sun',
+                '02n': 'fa-cloud-moon',
+                '03d': 'fa-cloud',
+                '03n': 'fa-cloud',
+                '04d': 'fa-cloud',
+                '04n': 'fa-cloud',
+                '09d': 'fa-cloud-rain',
+                '09n': 'fa-cloud-rain',
+                '10d': 'fa-cloud-sun-rain',
+                '10n': 'fa-cloud-moon-rain',
+                '11d': 'fa-bolt',
+                '11n': 'fa-bolt',
+                '13d': 'fa-snowflake',
+                '13n': 'fa-snowflake',
+                '50d': 'fa-smog',
+                '50n': 'fa-smog'
+            };
             return m[c] || 'fa-cloud';
         }
 
+        // Mostrar datos en la tarjeta de la ciudad
         function mostrarDatos(ciudad, data) {
             try {
                 var t = Math.round(data.main.temp);
@@ -308,34 +467,40 @@
                 var v = Math.round(data.wind.speed * 3.6);
                 var desc = data.weather[0].description;
                 var icono = getIconoFA(data.weather[0].icon);
+
                 document.getElementById(ciudad.temp).innerHTML = t + '<sup>°C</sup>';
                 document.getElementById(ciudad.desc).textContent = desc;
                 document.getElementById(ciudad.hum).innerHTML = '<i class="fas fa-tint"></i> ' + h + '%';
                 document.getElementById(ciudad.viento).innerHTML = '<i class="fas fa-wind"></i> ' + v + ' km/h';
+
                 var ic = document.getElementById(ciudad.icon);
                 ic.innerHTML = '<i class="fas ' + icono + '"></i>';
             } catch (e) {}
         }
 
+        // Obtener clima de todas las ciudades
         function obtenerClima() {
             try {
                 document.getElementById('estado').textContent = '🌐 Actualizando...';
                 document.getElementById('estado').style.background = 'rgba(100,200,255,0.15)';
                 document.getElementById('estado').style.borderColor = 'rgba(100,200,255,0.2)';
-                
+
                 var promesas = ciudades.map(function(c) {
                     var url;
                     if (c.tipo === 'coordenadas') {
-                        url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + c.lat + '&lon=' + c.lon + '&units=metric&lang=es&appid=' + API_KEY;
+                        url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + c.lat + '&lon=' + c.lon +
+                            '&units=metric&lang=es&appid=' + API_KEY;
                     } else {
-                        url = 'https://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(c.id) + ',' + c.pais + '&units=metric&lang=es&appid=' + API_KEY;
+                        url = 'https://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(c.id) +
+                            ',' + c.pais + '&units=metric&lang=es&appid=' + API_KEY;
                     }
                     return fetch(url)
                         .then(function(r) {
                             if (!r.ok) {
                                 if (c.tipo === 'coordenadas') {
-                                    // Si falla coordenadas, intentar por nombre como respaldo
-                                    return fetch('https://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(c.nombre) + ',MX&units=metric&lang=es&appid=' + API_KEY);
+                                    return fetch('https://api.openweathermap.org/data/2.5/weather?q=' +
+                                        encodeURIComponent(c.nombre) + ',MX&units=metric&lang=es&appid=' +
+                                        API_KEY);
                                 }
                                 throw new Error('Error ' + r.status);
                             }
@@ -352,7 +517,7 @@
                             console.warn('Error con ' + c.nombre + ':', e);
                         });
                 });
-                
+
                 Promise.all(promesas).then(function() {
                     document.getElementById('estado').textContent = '✅ Actualizado';
                     document.getElementById('estado').style.background = 'rgba(0,255,100,0.15)';
@@ -366,9 +531,10 @@
             }
         }
 
+        // Iniciar
         obtenerClima();
-        setInterval(obtenerClima, 300000);
-        setInterval(actualizarFecha, 60000);
+        setInterval(obtenerClima, 300000); // 5 minutos
+        setInterval(actualizarFecha, 60000); // 1 minuto
         actualizarFecha();
     })();
 </script>
